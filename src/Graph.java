@@ -50,7 +50,7 @@ public class Graph {
     }
 
     public void dfs() {
-        Stack<Integer> s = new Stack<Integer>();
+        Stack<Integer> s = new Stack<>();
         vertexList[0].isVistied = true;
         displayVertex(0);
         s.push(0);
@@ -71,21 +71,37 @@ public class Graph {
     }
 
     public void bfs() {
-        Queue<Integer> que = new LinkedList<Integer>();
+        Queue<Integer> q = new LinkedList<>();
         vertexList[0].isVistied = true;
         displayVertex(0);
-        que.add(0);
-        int v2;
-        while (!que.isEmpty()) {
-            int v1 = que.remove();
-            while ((v2 = getAdjUnvisitedVertex(v1)) != -1) {
+        q.add(0);
+        while (!q.isEmpty()) {
+            int v1 = q.remove();
+            while (getAdjUnvisitedVertex(v1) != -1) {
+                int v2 = getAdjUnvisitedVertex(v1);
                 vertexList[v2].isVistied = true;
                 displayVertex(v2);
-                que.add(v2);
+                q.add(v2);
             }
         }
+
         for (int i=0; i<nVerts; i++) {
             vertexList[i].isVistied = false;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
