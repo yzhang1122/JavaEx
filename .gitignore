@@ -1,0 +1,7 @@
+*.class
+*.war
+*.bak
+out/
+.idea
+*.iml
+.DS_Store
