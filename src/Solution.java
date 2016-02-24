@@ -2107,7 +2107,7 @@ public class Solution {
         ListNode runner = pre;
         Stack<Integer> s = new Stack<Integer>();
         int count = 0;
-        while (runner.next != null) {
+        while (runner != null) {
             runner = runner.next;
             count++;
             if (count >= m && count <= n) {
@@ -2116,7 +2116,7 @@ public class Solution {
         }
         runner = pre;
         count = 0;
-        while (runner.next != null) {
+        while (runner != null) {
             runner = runner.next;
             count++;
             if (count >= m && count <= n) {
