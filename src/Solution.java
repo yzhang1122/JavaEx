@@ -1256,32 +1256,29 @@ public class Solution {
         if (root == null) {
             return result;
         }
-
-        List<Integer> list = new LinkedList<Integer>();
-        list.add(root.val);
-        dfs(root, sum-root.val, result, list);
+        dfs(result, root, new LinkedList<Integer>(), sum);
         return result;
+
     }
 
-    public void dfs(TreeNode t, int sum, List<List<Integer>> result, List<Integer> list) {
-        if (t.left == null && t.right == null && sum == 0) {
-            List<Integer> temp = new LinkedList<Integer>();
-            temp.addAll(list);
-            result.add(temp);
-        }
+    public void dfs (List<List<Integer>> result, TreeNode node, List<Integer> temp, int sum) {
+        if (node.left == null && node.right == null) {
+            if (node.val == sum) {
+                temp.add(node.val);
+                result.add(temp);
+            }
+        } else {
+            if (node.left != null) {
+                List<Integer> list = new LinkedList<Integer>(temp);
+                list.add(node.val);
+                dfs(result, node.left, list, sum-node.val);
+            }
 
-        //search path of left node
-        if (t.left != null) {
-            list.add(t.left.val);
-            dfs(t.left, sum-t.left.val, result, list);
-            list.remove(list.size()-1);
-        }
-
-        //search path of right node
-        if (t.right != null) {
-            list.add(t.right.val);
-            dfs(t.right, sum-t.right.val, result, list);
-            list.remove(list.size() - 1);
+            if (node.right != null) {
+                List<Integer> list = new LinkedList<Integer>(temp);
+                list.add(node.val);
+                dfs(result, node.right, list, sum-node.val);
+            }
         }
     }
 
