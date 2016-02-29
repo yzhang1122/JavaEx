@@ -2419,23 +2419,21 @@ public class Solution {
 
     public List<List<Integer>> combinationSum3(int k, int n) {
         List<List<Integer>> result = new LinkedList<List<Integer>>();
-        List<Integer> temp = new LinkedList<Integer>();
-        dfs(result, temp, k, n, 1, 0);
+        rec(result, new LinkedList<Integer>(), k, n, 1);
         return result;
     }
 
-    public void dfs(List<List<Integer>> result, List<Integer> temp, int k, int n, int current, int sum) {
-        if (temp.size() == k && sum == n) {
-            result.add(new LinkedList<Integer>(temp));
-
+    public void rec(List<List<Integer>> result, List<Integer> temp, int k, int n, int pos) {
+        if (n == 0 && temp.size() == k) {
+            result.add(temp);
         } else {
-            for (int i=current; i<=9; i++) {
-                //List<Integer> tmp = new LinkedList<Integer>(temp);  depends space complexity
-                temp.add(i);
-                dfs(result, temp, k, n, i+1, sum+i);
-                temp.remove(temp.size() - 1);
+            for (int i=pos; i<=9; i++) {
+                if (n-i >= 0) {
+                    List<Integer> list = new LinkedList<Integer>(temp);
+                    list.add(i);
+                    rec(result, list, k, n-i, i+1);
+                }
             }
-
         }
     }
 
