@@ -4244,6 +4244,43 @@ public class Solution {
         return count;
     }
 
+    /**
+     * Implement Stack using Queues
+     */
+    class MyStack {
+        // Push element x onto stack.
+        Queue<Integer> q = new LinkedList<Integer>();
+
+        public void push(int x) {
+            q.add(x);
+        }
+
+        // Removes the element on top of the stack.
+        public void pop() {
+            int size = q.size();
+            for (int i=0; i<size-1; i++) {
+                q.add(q.remove());
+            }
+
+            q.remove();
+        }
+
+        // Get the top element.
+        public int top() {
+            int size = q.size();
+            for(int i = 0; i < size-1; i++) {
+                q.add(q.remove());
+            }
+            int ret = q.remove();
+            q.add(ret);
+            return ret;
+        }
+
+        // Return whether the stack is empty.
+        public boolean empty() {
+            return q.isEmpty();
+        }
+    }
 
 
 
