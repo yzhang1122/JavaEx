@@ -4283,6 +4283,21 @@ public class Solution {
     }
 
 
+    /**
+     * Kth Largest Element in an Array
+     */
+    public int findKthLargest(int[] nums, int k) {
+        Arrays.sort(nums);
+        int i = nums.length-1;
+        while (k > 1 && i >=0) {
+            i--;
+            k--;
+        }
+
+        return nums[i];
+    }
+
+
 
 
 
