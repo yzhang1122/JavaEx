@@ -3587,6 +3587,28 @@ public class Solution {
 
     }
 
+    public ListNode oddEvenList1(ListNode head) {
+        ListNode oddPre = new ListNode(-1);
+        ListNode evenPre = new ListNode(-1);
+        ListNode oddRunner = oddPre;
+        ListNode evenRunner = evenPre;
+        int count = 1;
+        while (head != null) {
+            if (count%2 != 0) {
+                oddRunner.next = new ListNode(head.val);
+                oddRunner = oddRunner.next;
+            } else {
+                evenRunner.next = new ListNode(head.val);
+                evenRunner = evenRunner.next;
+            }
+            head = head.next;
+            count++;
+        }
+
+        oddRunner.next = evenPre.next;
+        return oddPre.next;
+    }
+
 
     /*
      *  Product of Array Except Self
