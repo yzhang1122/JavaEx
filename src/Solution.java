@@ -2344,6 +2344,25 @@ public class Solution {
         return (num - 1) % 9 + 1;
     }
 
+    public int addDigits1(int num) {
+        int sum = 0;
+        while (true) {
+            sum = 0;
+            while (num > 0) {
+                sum += num%10;
+                num /= 10;
+            }
+
+            if (sum < 10) {
+                break;
+            } else {
+                num = sum;
+            }
+        }
+
+        return sum;
+    }
+
 
     /*
      *  Single Number III
