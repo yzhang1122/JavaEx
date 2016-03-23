@@ -1658,33 +1658,26 @@ public class Solution {
      */
 
     public List<String> binaryTreePaths(TreeNode root) {
-        List<String> result = new LinkedList<String>();
+        List<String> res = new LinkedList<String>();
         if (root == null) {
-            return result;
+            return res;
         }
 
-        dfs(root, new StringBuilder(), result);
-
-        return result;
+        rec(root, res, "");
+        return res;
     }
 
+    public void rec(TreeNode node, List<String> res, String temp) {
+        if (node.left == null && node.right == null) {
+            res.add(temp+node.val);
+        } else {
+            if (node.left != null) {
+                rec(node.left, res, temp + node.val +"->");
+            }
 
-    public void dfs(TreeNode node, StringBuilder sb, List<String> result) {
-        if(node.left == null && node.right == null) {
-            sb.append(node.val);
-            result.add(sb.toString());
-            return;
-        }
-
-        sb.append(node.val);
-        sb.append("->");
-
-        if(node.left != null) {
-            dfs(node.left, new StringBuilder(sb), result);
-        }
-
-        if(node.right != null) {
-            dfs(node.right, new StringBuilder(sb), result);
+            if (node.right != null) {
+                rec(node.right, res, temp + node.val +"->");
+            }
         }
     }
 
