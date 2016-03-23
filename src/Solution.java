@@ -1817,24 +1817,17 @@ public class Solution {
      *  the subarray [4,3] has the minimal length under the problem constraint.
      */
     public int minSubArrayLen(int s, int[] nums) {
-        int start = 0;
-        int end = 0;
-        int minLen = nums.length;
-        int sum = 0;
+        int start = 0, end = 0, sum = 0, minLen = Integer.MAX_VALUE;
         while (end < nums.length) {
             sum += nums[end];
-            while (sum >= s) {
-                if (start == end) {
-                    return 1;
-                } else {
-                    minLen = Math.min(minLen, end-start+1);
-                    sum -= nums[start++];
-                }
-
-            }
             end++;
+            while (sum >= s) {
+                minLen = Math.min(minLen, end-start);
+                sum -= nums[start];
+                start++;
+            }
         }
-        return minLen == nums.length? 0: minLen;
+        return minLen == Integer.MAX_VALUE? 0 : minLen;
     }
 
 
