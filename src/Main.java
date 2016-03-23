@@ -5,24 +5,24 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Graph g = new Graph();
-        g.addVertex('A');
-        g.addVertex('B');
-        g.addVertex('C');
-        g.addVertex('D');
-        g.addVertex('E');
+        Car c1 = new Car();
+        c1.setAge(4);
+        c1.setName("aaaa");
 
-        g.addEdge(0, 1); // AB
-        g.addEdge(1, 2); // BC
-        g.addEdge(0, 3); // AD
-        g.addEdge(3, 4);
-        System.out.print("Visits: ");
-        g.dfs(); // depth-first search
-        System.out.println();
-        System.out.print("Visits: ");
-        g.bfs(); // depth-first search
-        System.out.println();
+        Car c2 = new Car();
+        c2.setAge(4);
+        c2.setName(null);
+
+        List<Car> list = new LinkedList<>();
+        list.add(c1);
+        list.add(c2);
+
+        Collections.sort(list);
+        System.out.println(list);
     }
+
+
+
 
     public static List<Integer> getRow(int rowIndex) {
         List<Integer> result = new LinkedList<Integer>();
