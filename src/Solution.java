@@ -4313,6 +4313,41 @@ public class Solution {
 
 
     /**
+     * Implement Queue using Stacks
+     */
+    class MyQueue {
+        // Push element x to the back of queue.
+        Stack<Integer> queue = new Stack<Integer>();
+        public void push(int x) {
+            Stack<Integer> buffer = new Stack<Integer>();
+            while (!queue.isEmpty()) {
+                buffer.push(queue.pop());
+            }
+            queue.push(x);
+
+            while (!buffer.isEmpty()) {
+                queue.push(buffer.pop());
+            }
+        }
+
+        // Removes the element from in front of queue.
+        public void pop() {
+            queue.pop();
+        }
+
+        // Get the front element.
+        public int peek() {
+            return queue.peek();
+        }
+
+        // Return whether the queue is empty.
+        public boolean empty() {
+            return queue.isEmpty();
+        }
+    }
+
+
+    /**
      * Kth Largest Element in an Array
      */
     public int findKthLargest(int[] nums, int k) {
