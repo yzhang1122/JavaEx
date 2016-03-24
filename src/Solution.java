@@ -3682,8 +3682,8 @@ public class Solution {
                         min = Math.min(min, temp);
                     }
                 }
-                dp[sum] = min;
             }
+            dp[sum] = min;
             sum++;
         }
 
