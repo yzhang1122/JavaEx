@@ -2414,6 +2414,41 @@ public class Solution {
 
     }
 
+    /*
+     *  Combination Sum II
+     *  For example, given candidate set 10,1,2,7,6,1,5 and target 8,
+     *  [1, 7] [1, 2, 5] [2, 6] [1, 1, 6]
+     *
+     */
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Set<List<Integer>> res = new HashSet<List<Integer>>();
+        List<List<Integer>> result = new LinkedList<List<Integer>>();
+        Arrays.sort(candidates);
+        if (candidates == null || candidates.length == 0) {
+            return result;
+        }
+        rec(res, new LinkedList<Integer>(), candidates, target, 0);
+
+        result.addAll(res);
+        return result;
+    }
+
+    public void rec(Set<List<Integer>> res, List<Integer> temp, int[] candidates, int target, int pos) {
+        if (target == 0) {
+            res.add(temp);
+        } else {
+            for (int i=pos; i<candidates.length; i++) {
+                if (target < candidates[i]) {
+                    break;
+                }
+                List<Integer> list = new LinkedList<Integer>(temp);
+                list.add(candidates[i]);
+                rec(res, list, candidates, target-candidates[i], i+1);
+
+            }
+        }
+    }
+
 
     /*
      *  Combination Sum III
