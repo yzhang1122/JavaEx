@@ -1999,20 +1999,18 @@ public class Solution {
         preHead.next = head;
         ListNode runner = preHead;
         ListNode curr = preHead;
-        int count = 0;
-        Stack<Integer> s = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<Integer>();
         while (runner.next != null) {
             runner = runner.next;
-            count++;
-            s.push(runner.val);
-            if (count == k) {
-                while (!s.isEmpty()) {
+            stack.push(runner.val);
+            if (stack.size() == k) {
+                while (!stack.isEmpty()) {
                     curr = curr.next;
-                    curr.val = s.pop();
+                    curr.val = stack.pop();
                 }
-                count = 0;
             }
         }
+
         return head;
     }
 
