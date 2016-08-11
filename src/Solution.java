@@ -2803,20 +2803,18 @@ public class Solution {
      *  return [3, 4].
      */
     public int[] searchRange(int[] nums, int target) {
-        int count = 0, start = -1;
+        boolean found = false;
+        int start = -1, end = -1;
         for (int i=0; i<nums.length; i++) {
-            if (nums[i] == target) {
-                if (start == -1) {
-                    start = i;
-                }
-                count ++;
+            if (nums[i] == target && !found) {
+                found = true;
+                start = i;
+                end = start;
+            } else if (nums[i] == target && found) {
+                end++;
             }
         }
-        if (count > 0) {
-            return new int[]{start, start+count-1};
-        } else {
-            return new int[]{-1, -1};
-        }
+        return new int[]{start, end};
     }
 
     /*
