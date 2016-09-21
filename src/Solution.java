@@ -4573,6 +4573,32 @@ public class Solution {
     }
 
 
+    /*
+    *
+    * Sorting a stack using recursion
+    *
+    **/
+
+    public void sortStack(Stack<Integer> stack) {
+        if (!stack.isEmpty()) {
+            int x = stack.pop();
+            sortStack(stack);
+            sortInsert(stack, x);
+        }
+    }
+
+    public void sortInsert(Stack<Integer> stack, int x) {
+        if (stack.isEmpty() || x > stack.peek()) {
+            stack.push(x);
+            return;
+        }
+
+        int temp = stack.pop();
+        sortInsert(stack, x);
+        stack.push(temp);
+    }
+
+
 
 
 
