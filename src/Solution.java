@@ -4599,6 +4599,35 @@ public class Solution {
     }
 
 
+    /*
+    *
+    * Count Univalue Subtrees
+    *
+    **/
+    public int countUnivalSubtrees(TreeNode root) {
+        int[] count = new int[]{0};
+        unival(root, count);
+        return count[0];
+    }
+
+    private boolean unival(TreeNode root, int[] count) {
+        if(root == null)
+            return true;
+        if(root.left ==null && root.right == null) {
+            count[0]++;
+            return true;
+        }
+        boolean left = unival(root.left, count);
+        boolean right = unival(root.right, count);
+        if(left && right && (root.left == null || root.left.val == root.val)
+                && (root.right == null || root.right.val == root.val)) {
+            count[0]++;
+            return true;
+        }
+        return false;
+    }
+
+
 
 
 
