@@ -152,6 +152,30 @@ public class Solution {
     }
 
     /*
+     *  Longest Palindrome
+     *
+     *
+     */
+    public int longestPalindrome1(String s) {
+        Set<Character> set = new HashSet<Character>();
+        int count = 0;
+        for (int i=0; i<s.length(); i++) {
+            if (set.contains(s.charAt(i))) {
+                set.remove(s.charAt(i));
+                count++;
+            } else {
+                set.add(s.charAt(i));
+            }
+        }
+
+        if (set.isEmpty()) {
+            return count*2;
+        } else {
+            return count*2+1;
+        }
+    }
+
+    /*
      *  Letter Combinations of a Phone Number
      *  Input:Digit string "23"
      *  Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
@@ -4626,42 +4650,4 @@ public class Solution {
         }
         return false;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
