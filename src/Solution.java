@@ -4783,4 +4783,55 @@ public class Solution {
 
         return index == s.length();
     }
+
+    /*
+    *
+    *  Reverse Vowels of a String
+    *
+    **/
+    public String reverseVowels(String s) {
+        String vowels = "aeiouAEIOU";
+
+        char[] arr = s.toCharArray();
+        int i = 0, j = arr.length-1;
+        while (i <= j) {
+            while (i < j && !vowels.contains(arr[i] + "")) {
+                i++;
+            }
+
+            while (j > i && !vowels.contains(arr[j] + "")) {
+                j--;
+            }
+
+            char tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
+
+            i++;
+            j--;
+        }
+
+        return String.valueOf(arr);
+    }
+
+
+    /*
+    *
+    *  Ransom Note
+    *
+    **/
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int[] arr = new int[26];
+        for (int i=0; i<magazine.length(); i++) {
+            arr[magazine.charAt(i) - 'a']++;
+        }
+
+        for (int i=0; i<ransomNote.length(); i++) {
+            if (--arr[ransomNote.charAt(i) - 'a']< 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
