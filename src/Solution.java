@@ -4650,4 +4650,137 @@ public class Solution {
         }
         return false;
     }
+
+
+    /*
+    *
+    * Add Strings
+    *
+    **/
+    public String addStrings(String num1, String num2) {
+        StringBuilder sb = new StringBuilder();
+        int len1 = num1.length() - 1, len2 = num2.length() - 1, carry = 0;
+        while (len1 >= 0 || len2 >= 0) {
+            int t1 = len1 >= 0 ? num1.charAt(len1) - '0' : 0;
+            int t2 = len2 >= 0 ? num2.charAt(len2) - '0' : 0;
+            int sum = (t1 + t2 + carry);
+            sb.insert(0, sum%10);
+            carry = sum/10;
+            len1--;
+            len2--;
+        }
+
+        if (carry > 0) {
+            sb.insert(0, 1);
+        }
+        return sb.toString();
+    }
+
+    /*
+    *
+    * Partition Equal Subset Sum
+    *
+    **/
+    public boolean canPartition(int[] nums) {
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+        }
+        if(sum % 2 != 0) {
+            return false;
+        }
+        sum /= 2;
+
+        return dfs(nums, 0, sum);
+
+    }
+
+    public boolean dfs(int[] nums, int from, int sum) {
+        if(sum == 0) {
+            return true;
+        } else if(sum < 0) {
+            return false;
+        }
+
+        boolean flag = false;
+
+        for(int i = from; i < nums.length; i++) {
+            flag |= dfs(nums, i + 1, sum - nums[i]);
+            if(flag == true) {
+                return true;
+            }
+
+        }
+
+        return false;
+    }
+
+
+    /*
+    *
+    * Sum of Left Leaves
+    *
+    **/
+    public int sumOfLeftLeaves(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int sum = 0;
+        if (root.left != null) {
+            if (root.left.left == null && root.left.right == null) {
+                sum += root.left.val;
+            } else {
+                sum += sumOfLeftLeaves(root.left);
+            }
+        }
+
+        if (root.right != null) {
+            sum += sumOfLeftLeaves(root.right);
+        }
+
+        return sum;
+
+    }
+
+    /*
+    *
+    *  Nth Digit
+    *
+    **/
+    public int findNthDigit(int n) {
+        int len = 1;
+        long count = 9;
+        int start = 1;
+
+        while (n > len * count) {
+            n -= len * count;
+            len += 1;
+            count *= 10;
+            start *= 10;
+        }
+
+        start += (n - 1) / len;
+        String s = Integer.toString(start);
+        return Character.getNumericValue(s.charAt((n - 1) % len));
+    }
+
+    /*
+    *
+    *  Is Subsequence
+    *
+    **/
+    public boolean isSubsequence(String s, String t) {
+        if (s == null || s.length() == 0) {
+            return true;
+        }
+        int index = 0;
+        for (int i=0; i<t.length(); i++) {
+            if (index < s.length() && s.charAt(index) == t.charAt(i)) {
+                index++;
+            }
+        }
+
+        return index == s.length();
+    }
 }
